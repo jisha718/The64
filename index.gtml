@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The64 | Master Chess. Master Strategy.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-surface-variant": "#534345",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#c9c6c1",
+                    "primary-fixed-dim": "#ffb2bf",
+                    "outline": "#857275",
+                    "on-secondary-fixed": "#1c1c18",
+                    "on-surface": "#1b1c1c",
+                    "background": "#fbf9f8",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-variant": "#e4e2e1",
+                    "on-tertiary-container": "#4e3d00",
+                    "secondary": "#5f5e5a",
+                    "on-background": "#1b1c1c",
+                    "secondary-fixed": "#e5e2dc",
+                    "tertiary": "#735c00",
+                    "on-primary-container": "#d68393",
+                    "tertiary-fixed": "#ffe088",
+                    "inverse-primary": "#ffb2bf",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-container": "#f0eded",
+                    "surface-bright": "#fbf9f8",
+                    "secondary-container": "#e5e2dc",
+                    "primary-container": "#5a1e2d",
+                    "primary-fixed": "#ffd9de",
+                    "surface-dim": "#dcd9d9",
+                    "on-primary-fixed": "#3b0616",
+                    "on-tertiary-fixed": "#241a00",
+                    "outline-variant": "#d8c1c4",
+                    "on-primary-fixed-variant": "#733140",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-container-low": "#f6f3f2",
+                    "on-primary": "#ffffff",
+                    "primary": "#3f0819",
+                    "tertiary-container": "#cba72f",
+                    "on-secondary-container": "#656460",
+                    "surface": "#fbf9f8",
+                    "surface-container-high": "#eae7e7",
+                    "surface-tint": "#8f4857",
+                    "inverse-surface": "#303030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "margin-mobile": "16px",
+                    "section-gap": "120px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-lg-mobile": ["Playfair Display"],
+                    "label-caps": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "quote": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["28px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "quote": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fbf9f8; } /* Ivory Whisper base */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(133, 114, 117, 0.1);
+            box-shadow: 0 10px 30px -5px rgba(63, 8, 25, 0.05);
+        }
+        .bordeaux-btn {
+            background-color: #3f0819;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bordeaux-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(63, 8, 25, 0.4);
+            opacity: 0.95;
+        }
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        .chess-grid-bg {
+            background-image: linear-gradient(rgba(133, 114, 117, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(133, 114, 117, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl font-body-md text-body-md docked full-width top-0 sticky border-b border-outline/20 shadow-sm z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-12">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">The64</a>
+<div class="hidden md:flex gap-8">
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 cursor-pointer active:scale-95 duration-200" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors cursor-pointer active:scale-95 duration-200" href="#">Learn</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors cursor-pointer active:scale-95 duration-200" href="#">Tutorials</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors cursor-pointer active:scale-95 duration-200" href="#">Best Players</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors cursor-pointer active:scale-95 duration-200" href="#">Puzzles</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary font-medium transition-colors cursor-pointer active:scale-95 duration-200">Sign In</button>
+<button class="bordeaux-btn text-white px-8 py-2.5 rounded-full font-semibold cursor-pointer active:scale-95 duration-200">Join Elite</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center overflow-hidden chess-grid-bg">
+<!-- Background Animation -->
+<div class="absolute inset-0 z-0">
+
+</div>
+<div class="container max-w-container-max mx-auto px-margin-desktop relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-tertiary mb-4 block tracking-[0.2em] uppercase">Elite Chess Academy</span>
+<h1 class="font-display-lg text-display-lg text-primary mb-6 leading-tight">Master Chess.<br/>Master Strategy.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                    Learn chess from beginner to advanced with interactive lessons, practical tutorials, legendary players, and challenging puzzles. Designed for the curious mind.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="bordeaux-btn text-white px-10 py-4 rounded-xl font-semibold text-lg flex items-center gap-3">
+                        Start Learning
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="glass-panel px-10 py-4 rounded-xl font-semibold text-lg text-primary flex items-center gap-3 hover:bg-white/60 transition-all border border-outline/10">
+                        View Curriculum
+                    </button>
+</div>
+</div>
+<!-- Visual Asset -->
+<div class="hidden md:block relative">
+<div class="relative w-full aspect-square glass-panel rounded-3xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-700 shadow-2xl overflow-hidden">
+<img class="w-full h-full object-cover rounded-2xl" data-alt="A macro photography shot of a polished obsidian chess king standing solitary on a white marble board. The lighting is dramatic high-contrast side lighting that emphasizes the smooth curves and sharp details of the piece. The background is a blurred ivory studio space with a soft golden glow at the edges, reflecting a luxury minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh-0KReP4JtBlPQT-bF6m6maVFUS5lDdbqBAzsRkC4bnBdEQwk3kEkUxYKrj1oAqoG-0JPFEdJyllHE808MTt1cLrtMX_YP_ITwO3n51-DK-IfRbmiUcA5NMyTxs02pGbTXG7IoGQQT1J3Ku2bVrYHQuC7yWGEmhiFJh8O3pDziR0U2kx57XWWcPvfVKmiyyzc-RIDriFgt0ejl3BxRxldqyeCnB_Xq2PcRvTjU79WaLVfx5GYFYvBXhSbPoS3aqhOsd-jBLjxqEs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none"></div>
+</div>
+<!-- Floating Card -->
+<div class="absolute -bottom-10 -left-10 glass-panel p-6 rounded-2xl shadow-xl max-w-[240px] border border-outline/10 animate-pulse">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed">military_tech</span>
+</div>
+<div class="font-label-caps text-on-surface">Daily Challenge</div>
+</div>
+<p class="text-sm text-on-surface-variant italic">"The move is there, you just have to find it."</p>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator flex flex-col items-center gap-2">
+<span class="font-label-caps text-on-surface-variant text-[10px]">Scroll to Explore</span>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+</section>
+<!-- Why Learn Chess Section -->
+<section class="py-section-gap bg-surface relative overflow-hidden">
+<!-- Subtle board accent -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-surface-container-lowest opacity-50 -skew-x-12 translate-x-20"></div>
+<div class="container max-w-container-max mx-auto px-margin-desktop relative z-10">
+<div class="mb-16 text-center max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Why Learn Chess?</h2>
+<div class="h-1 w-20 bg-primary mx-auto mb-8 opacity-20"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Beyond the board, chess cultivates the mental discipline of a grandmaster. It is a lifelong training for the sharpest minds.
+                </p>
+</div>
+<!-- Bento-style Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-gutter">
+<!-- Card 1 -->
+<div class="md:col-span-2 glass-panel p-10 rounded-[16px] hover:shadow-lg transition-shadow group">
+<div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Strategic Thinking</h3>
+<p class="text-on-surface-variant leading-relaxed">Anticipate moves, evaluate risks, and think three steps ahead in every life endeavor.</p>
+</div>
+<!-- Card 2 -->
+<div class="md:col-span-2 glass-panel p-10 rounded-[16px] hover:shadow-lg transition-shadow group">
+<div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">center_focus_strong</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Better Concentration</h3>
+<p class="text-on-surface-variant leading-relaxed">Train your mind to ignore distractions and enter a state of deep flow and mental clarity.</p>
+</div>
+<!-- Card 3 -->
+<div class="md:col-span-2 glass-panel p-10 rounded-[16px] hover:shadow-lg transition-shadow group">
+<div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">memory</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Improved Memory</h3>
+<p class="text-on-surface-variant leading-relaxed">Strengthen neural pathways through pattern recognition and historical game analysis.</p>
+</div>
+<!-- Card 4 -->
+<div class="md:col-span-3 glass-panel p-10 rounded-[16px] hover:shadow-lg transition-shadow group">
+<div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Problem-solving Skills</h3>
+<p class="text-on-surface-variant leading-relaxed">Every match is a complex puzzle. Developing these skills creates an analytical mindset that thrives under pressure and complex variables.</p>
+</div>
+<!-- Card 5 -->
+<div class="md:col-span-3 glass-panel p-10 rounded-[16px] hover:shadow-lg transition-shadow group">
+<div class="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">hourglass_empty</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Patience &amp; Decision-making</h3>
+<p class="text-on-surface-variant leading-relaxed">Learn the value of the pause. Master the art of waiting for the perfect moment to strike while maintaining absolute composure.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest w-full border-t border-outline/10 py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed mb-6 block" href="#">The64</a>
+<p class="text-on-surface-variant text-sm mb-6 max-w-xs">
+                    The world's premier digital academy for chess mastery, blending centuries of tradition with modern instructional excellence.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:text-tertiary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">public</span></a>
+<a class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:text-tertiary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-primary font-body-md uppercase tracking-widest text-[11px] mb-4">Academy</h4>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Courses</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Live Masterclass</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Pricing</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Tutors</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-primary font-body-md uppercase tracking-widest text-[11px] mb-4">Resources</h4>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Privacy</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Terms</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Support</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-tertiary transition-colors" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-6">
+<h4 class="font-bold text-primary font-body-md uppercase tracking-widest text-[11px] mb-4">Elite Newsletter</h4>
+<p class="text-sm text-on-surface-variant">Insights from Grandmasters delivered weekly.</p>
+<div class="relative">
+<input class="w-full bg-white/50 border-b border-outline/20 py-3 px-4 focus:outline-none focus:border-primary transition-colors text-sm" placeholder="Email Address" type="email"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-primary font-bold hover:text-tertiary transition-colors">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-outline/5 text-center">
+<p class="text-on-surface-variant text-sm">© 2024 The64 Grandmaster Academy. All rights reserved.</p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>
