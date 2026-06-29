@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Puzzles | The64 - Master the Art of Strategy</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#cba72f",
+                    "secondary-container": "#e5e2dc",
+                    "surface-tint": "#8f4857",
+                    "surface-bright": "#fbf9f8",
+                    "outline": "#857275",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "on-primary-container": "#d68393",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-dim": "#dcd9d9",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed-dim": "#c9c6c1",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-primary-fixed-variant": "#733140",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f6f3f2",
+                    "error-container": "#ffdad6",
+                    "primary": "#3f0819",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-tertiary-container": "#4e3d00",
+                    "outline-variant": "#d8c1c4",
+                    "primary-fixed": "#ffd9de",
+                    "on-surface": "#1b1c1c",
+                    "on-tertiary-fixed": "#241a00",
+                    "tertiary": "#735c00",
+                    "on-secondary-container": "#656460",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-container": "#f0eded",
+                    "secondary-fixed": "#e5e2dc",
+                    "background": "#fbf9f8",
+                    "inverse-primary": "#ffb2bf",
+                    "primary-container": "#5a1e2d",
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#3b0616",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#534345",
+                    "tertiary-fixed": "#ffe088",
+                    "secondary": "#5f5e5a",
+                    "primary-fixed-dim": "#ffb2bf",
+                    "surface-container-high": "#eae7e7",
+                    "inverse-surface": "#303030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(47, 47, 47, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+        .chess-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            aspect-ratio: 1 / 1;
+        }
+        .square-light { background-color: #fbf9f8; }
+        .square-dark { background-color: #5a1e2d; }
+        .active-square { box-shadow: inset 0 0 0 4px #cba72f; }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle parchment texture overlay */
+        .parchment-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: -1;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="parchment-overlay"></div>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface-container/60 backdrop-blur-xl border-b border-outline/10 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="font-display-lg text-headline-md text-primary dark:text-primary-fixed">The64</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Home</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Learn</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Tutorials</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Best Players</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Puzzles</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="font-label-md text-label-md uppercase tracking-wider text-primary transition-all duration-200 active:opacity-80">Sign In</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider transition-all duration-200 active:opacity-80 hover:bg-primary/90">Join Now</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Section -->
+<section class="mb-12">
+<div class="max-w-3xl">
+<h1 class="font-display-lg text-display-lg text-primary mb-4">Puzzle Arena</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Hone your tactical intuition. Each position is a lesson in precision and foresight.</p>
+</div>
+</section>
+<!-- Main Layout: 12-column grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Levels & Daily Challenge (3 cols) -->
+<aside class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+<!-- Daily Challenge Card -->
+<div class="glass-panel p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-64 text-primary" style="font-size: 80px;">calendar_today</span>
+</div>
+<div class="relative z-10">
+<span class="bg-tertiary-container text-on-tertiary-container text-xs font-bold uppercase tracking-widest px-2 py-1 rounded mb-4 inline-block">Daily Highlight</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">The Grandmaster's Gambit</h3>
+<p class="text-sm text-on-surface-variant mb-4">A complex end-game scenario inspired by Kasparov's 1999 masterpiece.</p>
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary/95 transition-colors">Start Daily Challenge</button>
+</div>
+</div>
+<!-- Difficulty Selector -->
+<div class="glass-panel p-6 rounded-xl">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant mb-6">Select Difficulty</h4>
+<div class="space-y-3">
+<button class="w-full flex items-center justify-between p-4 rounded-lg bg-white/40 border border-outline/5 hover:border-primary/20 transition-all group active:bg-primary/5">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-green-500"></span>
+<span class="font-bold text-primary">Beginner</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 rounded-lg bg-primary/5 border border-primary/20 transition-all group">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="font-bold text-primary">Intermediate</span>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 rounded-lg bg-white/40 border border-outline/5 hover:border-primary/20 transition-all group active:bg-primary/5">
+<div class="flex items-center gap-3">
+<span class="w-3 h-3 rounded-full bg-red-600"></span>
+<span class="font-bold text-primary">Advanced</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Progress Tracker -->
+<div class="glass-panel p-6 rounded-xl">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant mb-4">Your Progress</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-end mb-1">
+<span class="text-sm font-semibold">Weekly Goal</span>
+<span class="text-xs text-on-surface-variant">12 / 20 Solved</span>
+</div>
+<div class="w-full h-2 bg-secondary-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 60%"></div>
+</div>
+<div class="flex justify-between text-xs text-on-surface-variant pt-2 border-t border-outline/5">
+<span>Solved Today: 4</span>
+<span>Avg. Time: 1:24</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Column: Chessboard (6 cols) -->
+<div class="col-span-12 lg:col-span-6">
+<div class="glass-panel p-4 rounded-2xl shadow-xl">
+<div class="chess-grid rounded-lg overflow-hidden border-4 border-primary/10">
+<!-- Chessboard Grid Generation -->
+<script>
+                            const grid = document.querySelector('.chess-grid');
+                            const pieces = {
+                                '8,0': 'rook_black', '8,1': 'knight_black', '8,2': 'bishop_black', '8,3': 'queen_black', '8,4': 'king_black',
+                                '7,0': 'pawn_black', '7,1': 'pawn_black', '7,2': 'pawn_black',
+                                '1,4': 'pawn_white', '2,4': 'knight_white', '1,0': 'rook_white'
+                                // Symbolic placeholders for pieces
+                            };
+
+                            for (let row = 8; row >= 1; row--) {
+                                for (let col = 1; col <= 8; col++) {
+                                    const square = document.createElement('div');
+                                    const isDark = (row + col) % 2 === 0;
+                                    square.className = `relative flex items-center justify-center ${isDark ? 'square-dark' : 'square-light'}`;
+                                    
+                                    // Visual cues for the puzzle
+                                    if(row === 2 && col === 4) square.classList.add('active-square');
+                                    
+                                    // Piece representation
+                                    if(row === 8 && col === 5) {
+                                        square.innerHTML = `<span class="material-symbols-outlined text-4xl text-on-surface" style="font-variation-settings: 'FILL' 1;">king_bed</span>`;
+                                    }
+                                    if(row === 2 && col === 4) {
+                                        square.innerHTML = `<span class="material-symbols-outlined text-4xl text-tertiary" style="font-variation-settings: 'FILL' 1;">knight</span>`;
+                                    }
+                                    
+                                    grid.appendChild(square);
+                                }
+                            }
+                        </script>
+</div>
+<!-- Controls below board -->
+<div class="flex justify-between items-center mt-6 px-2">
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-6 py-2 rounded-full border border-primary text-primary font-label-md hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">lightbulb</span>
+                                HINT
+                            </button>
+<button class="flex items-center gap-2 px-6 py-2 rounded-full text-on-surface-variant font-label-md hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">visibility</span>
+                                SHOW SOLUTION
+                            </button>
+</div>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline/20 hover:border-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">first_page</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline/20 hover:border-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">navigate_before</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-fixed text-on-primary-fixed hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-90">
+<span class="material-symbols-outlined">navigate_next</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Notation & Meta (3 cols) -->
+<aside class="col-span-12 lg:col-span-3 flex flex-col gap-6">
+<!-- Move Notation -->
+<div class="glass-panel p-6 rounded-xl flex-1 min-h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-4 pb-4 border-b border-outline/10">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">Notation</h4>
+<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">White to move</span>
+</div>
+<div class="flex-1 space-y-2 overflow-y-auto pr-2 custom-scrollbar">
+<div class="grid grid-cols-5 gap-2 text-sm">
+<span class="text-on-surface-variant">24.</span>
+<span class="col-span-2 font-bold p-1 bg-primary/5 rounded cursor-pointer hover:bg-primary/10">Nxe5</span>
+<span class="col-span-2 p-1 rounded cursor-pointer hover:bg-secondary-container">dxe5</span>
+</div>
+<div class="grid grid-cols-5 gap-2 text-sm">
+<span class="text-on-surface-variant">25.</span>
+<span class="col-span-2 p-1 rounded cursor-pointer hover:bg-secondary-container">Rad1</span>
+<span class="col-span-2 p-1 rounded cursor-pointer hover:bg-secondary-container">f5</span>
+</div>
+<div class="grid grid-cols-5 gap-2 text-sm">
+<span class="text-on-surface-variant">26.</span>
+<span class="col-span-2 p-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-bold">... ?</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline/10">
+<p class="text-xs italic text-on-surface-variant">Find the winning sequence for white. Hint: Look for the pin on the d-file.</p>
+</div>
+</div>
+<!-- Analysis Tool Mock -->
+<div class="glass-panel p-4 rounded-xl">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up photography of high quality wooden chess pieces, specifically a white knight and queen, on a modern textured board with soft depth of field and elegant warm studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCJnkxtLbNeIjAPRbfj4tN50EzxvPdeA-55G_r9AHHtax2JXS2_uYrFOIBrCx6IV5UjJFmB5GIDoRCojFQAcoT2g0f_w8U0UMcCEHjN00rZDqNyD2WW3Bsy-jACvjvILDw8KmB_zuUywb6TW15qTSLpDENO9GC5Hx67zKm8rFPd3BC5oPiVUsnmtTKRdo-YTYBKeMbBSYRw-3C3nGMHPLXZMdDr12F_cYl-pwMQW38ARD3aOw6lNRrf-xjCPj1iG3XaxCeQloEk44"/>
+</div>
+<div>
+<h5 class="text-sm font-bold text-primary">Engine Analysis</h5>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs text-green-600 font-bold">+1.45</span>
+<div class="w-24 h-1.5 bg-secondary-container rounded-full overflow-hidden">
+<div class="h-full bg-green-500" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest w-full py-12 border-t border-outline/10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-headline-md text-primary dark:text-primary-fixed mb-4">The64</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Mastering the Art of Strategy.</p>
+</div>
+<div>
+<h6 class="font-label-md text-label-md uppercase tracking-wider text-primary mb-6">Company</h6>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline underline-offset-4 transition-opacity duration-200" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline underline-offset-4 transition-opacity duration-200" href="#">Careers</a></li>
+<li><a class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline underline-offset-4 transition-opacity duration-200" href="#">Legal</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-md text-label-md uppercase tracking-wider text-primary mb-6">Community</h6>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline underline-offset-4 transition-opacity duration-200" href="#">Social</a></li>
+<li><a class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline underline-offset-4 transition-opacity duration-200" href="#">Support</a></li>
+<li><a class="text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline underline-offset-4 transition-opacity duration-200" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-label-md text-label-md uppercase tracking-wider text-primary mb-6">Newsletter</h6>
+<div class="flex flex-col gap-4">
+<input class="bg-white/50 border border-outline/20 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-all" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">Subscribe</button>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-outline/5 text-center px-margin-desktop max-w-container-max mx-auto">
+<p class="text-xs text-on-surface-variant opacity-70">© 2024 The64. All rights reserved. Mastering the Art of Strategy.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.chess-grid > div').forEach(square => {
+            square.addEventListener('mouseenter', () => {
+                square.style.transform = 'scale(1.02)';
+                square.style.zIndex = '10';
+            });
+            square.addEventListener('mouseleave', () => {
+                square.style.transform = 'scale(1)';
+                square.style.zIndex = '1';
+            });
+        });
+
+        // Toggle Difficulty Logic
+        const diffButtons = document.querySelectorAll('aside .space-y-3 button');
+        diffButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                diffButtons.forEach(b => {
+                    b.classList.remove('bg-primary/5', 'border-primary/20');
+                    b.classList.add('bg-white/40', 'border-outline/5');
+                    b.querySelector('span.material-symbols-outlined').classList.add('text-outline');
+                    b.querySelector('span.material-symbols-outlined').classList.remove('text-primary');
+                });
+                btn.classList.add('bg-primary/5', 'border-primary/20');
+                btn.classList.remove('bg-white/40', 'border-outline/5');
+                btn.querySelector('span.material-symbols-outlined').classList.remove('text-outline');
+                btn.querySelector('span.material-symbols-outlined').classList.add('text-primary');
+            });
+        });
+    </script>
+</body></html>

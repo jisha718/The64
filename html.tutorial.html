@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutorials | The64 - Mastering the Art of Strategy</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#cba72f",
+                    "secondary-container": "#e5e2dc",
+                    "surface-tint": "#8f4857",
+                    "surface-bright": "#fbf9f8",
+                    "outline": "#857275",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "on-primary-container": "#d68393",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-dim": "#dcd9d9",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed-dim": "#c9c6c1",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-primary-fixed-variant": "#733140",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f6f3f2",
+                    "error-container": "#ffdad6",
+                    "primary": "#3f0819",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-tertiary-container": "#4e3d00",
+                    "outline-variant": "#d8c1c4",
+                    "primary-fixed": "#ffd9de",
+                    "on-surface": "#1b1c1c",
+                    "on-tertiary-fixed": "#241a00",
+                    "tertiary": "#735c00",
+                    "on-secondary-container": "#656460",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-container": "#f0eded",
+                    "secondary-fixed": "#e5e2dc",
+                    "background": "#fbf9f8",
+                    "inverse-primary": "#ffb2bf",
+                    "primary-container": "#5a1e2d",
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#3b0616",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#534345",
+                    "tertiary-fixed": "#ffe088",
+                    "secondary": "#5f5e5a",
+                    "primary-fixed-dim": "#ffb2bf",
+                    "surface-container-high": "#eae7e7",
+                    "inverse-surface": "#303030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(47, 47, 47, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(63, 8, 25, 0.05);
+        }
+        .learning-path-line {
+            background: linear-gradient(90deg, transparent, #3f0819 15%, #3f0819 85%, transparent);
+            height: 2px;
+            opacity: 0.1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d8c1c4;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 dark:bg-surface-container/60 backdrop-blur-xl border-b border-outline/10 shadow-sm">
+<div class="flex justify-between items-center px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="font-display-lg text-headline-md text-primary dark:text-primary-fixed">The64</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Home</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Learn</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold border-b-2 border-primary pb-1" href="#">Tutorials</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Best Players</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Puzzles</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="font-label-md text-label-md uppercase tracking-wider text-primary hover:opacity-80 transition-all duration-200">Sign In</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary-container transition-all duration-200">Join Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24">
+<!-- Hero Section -->
+<header class="max-w-container-max mx-auto px-margin-desktop mb-20">
+<div class="max-w-3xl">
+<span class="font-label-md text-label-md uppercase tracking-[0.2em] text-tertiary mb-4 block">Knowledge is Power</span>
+<h1 class="font-display-lg text-display-lg mb-6 text-primary">Refine Your Strategy</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    From the foundational movements of the pawns to the complex endgame theories of grandmasters. Explore our curated path to chess excellence.
+                </p>
+</div>
+</header>
+<!-- Recommended Learning Path (Visual Guide) -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-24">
+<div class="glass-card p-12 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline-md text-headline-md text-primary mb-12">Recommended Learning Path</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter relative">
+<!-- Connecting Line for Desktop -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-outline-variant/30 -translate-y-1/2 -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center mb-6 shadow-lg ring-8 ring-background">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h3 class="font-headline-md text-body-lg font-bold mb-2">Fundamentals</h3>
+<p class="text-label-md text-on-surface-variant px-4">Mastering opening principles and center control.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-6 shadow-sm ring-8 ring-background">
+<span class="material-symbols-outlined text-2xl">swords</span>
+</div>
+<h3 class="font-headline-md text-body-lg font-bold mb-2">Tactics</h3>
+<p class="text-label-md text-on-surface-variant px-4">Pinning, forking, and common beginner errors.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-6 shadow-sm ring-8 ring-background">
+<span class="material-symbols-outlined text-2xl">strategy</span>
+</div>
+<h3 class="font-headline-md text-body-lg font-bold mb-2">Strategy</h3>
+<p class="text-label-md text-on-surface-variant px-4">Advanced piece development and king safety.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest text-primary flex items-center justify-center mb-6 shadow-sm ring-8 ring-background">
+<span class="material-symbols-outlined text-2xl">trophy</span>
+</div>
+<h3 class="font-headline-md text-body-lg font-bold mb-2">The Endgame</h3>
+<p class="text-label-md text-on-surface-variant px-4">Technical precision for the final battle.</p>
+</div>
+</div>
+</div>
+<!-- Background Decorative Element -->
+<div class="absolute -right-24 -bottom-24 opacity-[0.03] pointer-events-none">
+<span class="material-symbols-outlined text-[320px]">grid_4x4</span>
+</div>
+</div>
+</section>
+<!-- Tutorial Tiers -->
+<section class="max-w-container-max mx-auto px-margin-desktop space-y-24">
+<!-- Beginner Tier -->
+<div>
+<div class="flex items-end justify-between mb-10 border-b border-outline/10 pb-6">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-tertiary/10 text-tertiary font-label-md text-[12px] uppercase tracking-widest mb-3">Tier 01</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Beginner Fundamentals</h2>
+</div>
+<button class="text-primary font-label-md uppercase tracking-wider flex items-center gap-2 hover:gap-3 transition-all duration-300">
+                        View All <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Opening Principles -->
+<div class="glass-card group cursor-pointer overflow-hidden rounded-xl">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-contrast, professional overhead photograph of a classic wooden chessboard in a minimalist study. Soft natural light highlights the white and black pieces at their starting positions. The aesthetic is elegant and academic, using a palette of ivory, rich mahogany, and deep burgundy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGNS3xHVMFciDZ1fSwka8X_M8voKwkX1EKHerTsqoY7k6Y7Ve6Pr1nDopsUsdkBta9Nw8uV10-L2kEdci52UJadF4pVJXg1G6Qclgik_NsEZGE0wVFsdKwqaDWO6MuBGbtYEuoUkyNSS2ggpny_6nvLHIxllIRD4qwtevHT41e9IM0KC109rpezpO1LQ6j8rvQx-CVKCEubEMAg6H80t08BkfANC-22Ocf5zBdTJ7joxZiMgCJd9l0qv1Ovwsj59y-EeJiWNI0UO0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-surface/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase text-primary">15 Mins</span>
+</div>
+</div>
+<div class="p-8">
+<h3 class="font-headline-md text-headline-md mb-3 group-hover:text-primary transition-colors">Opening Principles</h3>
+<p class="text-on-surface-variant text-body-md mb-6">Master the three golden rules of the opening: controlling the center, development, and safety.</p>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> <span class="text-[12px]">12k</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">thumb_up</span> <span class="text-[12px]">4.8k</span></div>
+</div>
+</div>
+</div>
+<!-- Controlling the Center -->
+<div class="glass-card group cursor-pointer overflow-hidden rounded-xl">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up artistic shot of a chessboard's central squares (d4, d5, e4, e5) with a white pawn and a black knight positioned strategically. The lighting is dramatic and warm, emphasizing the texture of the ivory-colored board. The style is modern luxury with a soft focus background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhMCJufjWIFBETA_VW7HpdV-UwJMwZs-EHMFTUl-B_57qr3o4cNMNl4s_QuFKv2AfV6hpY_3HrMAyy6yU7BhWwzMUqlDgwXpJX1vF6ohE_uDiEDzYACPvgKmr2tQEANBKSb8f-vqVhXY34rGwsJGidu0jWzDJYgz5ic4bImdR-STvNZqbMZrR2CHNN_9OnIIkloBP5hdkZ6Wzafy8XTEN_zqjQ5EEtAudflIVOXxiPyiyYc2khfeqQLam-s-6WhWUvW0OIWgYIfJY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-surface/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase text-primary">22 Mins</span>
+</div>
+</div>
+<div class="p-8">
+<h3 class="font-headline-md text-headline-md mb-3 group-hover:text-primary transition-colors">Controlling the Center</h3>
+<p class="text-on-surface-variant text-body-md mb-6">Why the 2x2 grid in the middle of the board dictates the pace of every grandmaster game.</p>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> <span class="text-[12px]">8.5k</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">thumb_up</span> <span class="text-[12px]">3.1k</span></div>
+</div>
+</div>
+</div>
+<!-- Common Beginner Mistakes -->
+<div class="glass-card group cursor-pointer overflow-hidden rounded-xl">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A macro shot of a black King piece lying on its side on a marble-textured chessboard, symbolizing a resigned game. The lighting is cool-toned and moody, creating a sense of reflection and learning from failure. Minimalist composition with a focus on tactical precision and high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd0E_DLm-mt-vJ2nYauw2B38N1NOifEgEjFZUmwjD08U58Y--k9z2tCflAFy1HcX3EIYHr-sh8HasBNz40-tpWuiDKq4D2_7yepiuz4cJaMxYbgqgoCD14o_k0PqofOgBF4hB4PA41e41J6CIJ89D6KFxuxA0r3QCPTYQLYN0zI1o43--0RRthrr12fal5ClKP0LvkYpgovjX2ygOlY11jokbuQ1a85IRATuetn6PWSD85wX_VbjY1G4pwHrO6J-ZCepDKUzy8hos"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-surface/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase text-primary">18 Mins</span>
+</div>
+</div>
+<div class="p-8">
+<h3 class="font-headline-md text-headline-md mb-3 group-hover:text-primary transition-colors">Common Mistakes</h3>
+<p class="text-on-surface-variant text-body-md mb-6">Avoid the pitfalls that 90% of new players fall into during their first hundred matches.</p>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> <span class="text-[12px]">24k</span></div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">thumb_up</span> <span class="text-[12px]">9.2k</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Intermediate & Advanced Grid (Asymmetric) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Intermediate -->
+<div class="lg:col-span-8">
+<div class="flex items-center justify-between mb-10 border-b border-outline/10 pb-6">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary font-label-md text-[12px] uppercase tracking-widest mb-3">Tier 02</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Intermediate Tactics</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Piece Development -->
+<div class="glass-card group cursor-pointer p-8 rounded-xl flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined">extension</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Piece Development</h3>
+<p class="text-on-surface-variant text-body-md mb-8">Understanding the 'Tempo' and how to coordinate your minor pieces for a powerful mid-game transition.</p>
+</div>
+<div class="flex justify-between items-center pt-6 border-t border-outline/5">
+<span class="text-label-md font-bold text-primary">ADVANCED STUDY</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
+</div>
+</div>
+<!-- King Safety -->
+<div class="glass-card group cursor-pointer p-8 rounded-xl flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">King Safety</h3>
+<p class="text-on-surface-variant text-body-md mb-8">Mastering the art of castling and identifying when a direct assault on the king's fortress is imminent.</p>
+</div>
+<div class="flex justify-between items-center pt-6 border-t border-outline/5">
+<span class="text-label-md font-bold text-primary">DEFENSIVE STRATEGY</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
+</div>
+</div>
+<!-- Tactical Combinations (Wide) -->
+<div class="glass-card group cursor-pointer p-8 rounded-xl md:col-span-2 flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-1/3 aspect-video rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A modern digital visualization of a chess engine analyzing a complex position. Floating lines and translucent overlays connect various pieces on a minimalist 3D board. The lighting is sophisticated and clean, with soft glow effects on the paths of movement. Minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhzqk1OIIAOx0DLxEjeLbmKxOr-fb6IxYDqQN6HXRNwVka76WE1SBUkxfJU29XibxbdOsoCfDwlp_YTogd4N3ChhxqCcW152y3QDkPbQQ_i6RedYN_He4vD-QShOxeJJ17yIp6Aa_K1OAwLXfj3LU-oj14euD3Mnh1QQgGSBTKqnun9ZH6YA3ECJbYqYu-4fwKkgYgmMM-rr-PaOfZq1fiXHolnX0MNL45x3IFt1UoTnGyETWDM9FKXk-GnXFqXnwO8MQUutnIfBI"/>
+</div>
+<div class="w-full md:w-2/3">
+<h3 class="font-headline-md text-headline-md mb-4">Tactical Combinations</h3>
+<p class="text-on-surface-variant text-body-md mb-4">Learning to spot pins, skewers, and discoveries. A deep dive into the 'calculation' phase of intermediate play.</p>
+<div class="flex gap-4">
+<span class="bg-secondary-container px-3 py-1 rounded-full text-[10px] font-bold">45 MINS</span>
+<span class="bg-secondary-container px-3 py-1 rounded-full text-[10px] font-bold">MASTERCLASS</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Advanced -->
+<div class="lg:col-span-4">
+<div class="mb-10 border-b border-outline/10 pb-6">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-tint/10 text-surface-tint font-label-md text-[12px] uppercase tracking-widest mb-3">Tier 03</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Mastery</h2>
+</div>
+<div class="space-y-gutter">
+<!-- Endgame Fundamentals Card -->
+<div class="bg-primary text-on-primary p-10 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md mb-4">Endgame Fundamentals</h3>
+<p class="opacity-80 text-body-md mb-10 leading-relaxed">The final stage where precision is absolute. Learn pawn structures, opposition, and technical draws.</p>
+<button class="bg-on-primary text-primary px-8 py-3 rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary-fixed transition-colors">Start Masterclass</button>
+</div>
+<!-- Subtle background logo -->
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] opacity-10 rotate-12 group-hover:rotate-0 transition-transform duration-500" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<!-- Sidebar Quick Links -->
+<div class="glass-card p-8 rounded-xl">
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-primary mb-6">More Resources</h4>
+<ul class="space-y-4">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-sm">history_edu</span>
+<span class="text-body-md">Grandmaster Analyses</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-sm">menu_book</span>
+<span class="text-body-md">The Theory of Space</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-sm">science</span>
+<span class="text-body-md">Engine Exploration</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="mt-32 max-w-container-max mx-auto px-margin-desktop">
+<div class="bg-surface-container rounded-2xl p-16 text-center border border-outline/5 relative overflow-hidden">
+<div class="max-w-2xl mx-auto relative z-10">
+<h2 class="font-display-lg text-headline-lg text-primary mb-6">Stay Ahead of the Game</h2>
+<p class="text-on-surface-variant text-body-lg mb-10">Get the weekly "Grandmaster Insight" newsletter directly to your inbox. Tactical puzzles and opening theory updates.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<input class="bg-surface px-6 py-4 rounded-lg border-none focus:ring-2 focus:ring-primary w-full md:w-80 shadow-sm" placeholder="Your email address" type="email"/>
+<button class="bg-primary text-on-primary px-10 py-4 rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary-container transition-all">Subscribe</button>
+</div>
+</div>
+<!-- Abstract Pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#3f0819 2px, transparent 2px); background-size: 40px 40px;"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline/10 w-full py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="space-y-6">
+<div class="font-display-lg text-headline-md text-primary">The64</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 The64. All rights reserved. Mastering the Art of Strategy.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-primary mb-6">Company</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 underline underline-offset-4" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 underline underline-offset-4" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-primary mb-6">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 underline underline-offset-4" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 underline underline-offset-4" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-primary mb-6">Social</h4>
+<ul class="space-y-4">
+<li><a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 underline underline-offset-4" href="#">Community</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 underline underline-offset-4" href="#">Support</a></li>
+</ul>
+</div>
+</div>
+</footer>
+<script>
+        // Subtle scroll reveal effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.glass-card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(card);
+            });
+        });
+
+        // Hover animation for icons
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0)';
+                }
+            });
+        });
+    </script>
+</body></html>

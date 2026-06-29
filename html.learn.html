@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Learn Chess | The64</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#cba72f",
+                    "secondary-container": "#e5e2dc",
+                    "surface-tint": "#8f4857",
+                    "surface-bright": "#fbf9f8",
+                    "outline": "#857275",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "on-primary-container": "#d68393",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fbf9f8",
+                    "on-secondary-fixed": "#1c1c18",
+                    "surface-dim": "#dcd9d9",
+                    "surface-variant": "#e4e2e1",
+                    "secondary-fixed-dim": "#c9c6c1",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f3f0f0",
+                    "on-primary-fixed-variant": "#733140",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f6f3f2",
+                    "error-container": "#ffdad6",
+                    "primary": "#3f0819",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "on-tertiary-container": "#4e3d00",
+                    "outline-variant": "#d8c1c4",
+                    "primary-fixed": "#ffd9de",
+                    "on-surface": "#1b1c1c",
+                    "on-tertiary-fixed": "#241a00",
+                    "tertiary": "#735c00",
+                    "on-secondary-container": "#656460",
+                    "surface-container-highest": "#e4e2e1",
+                    "surface-container": "#f0eded",
+                    "secondary-fixed": "#e5e2dc",
+                    "background": "#fbf9f8",
+                    "inverse-primary": "#ffb2bf",
+                    "primary-container": "#5a1e2d",
+                    "on-secondary-fixed-variant": "#474743",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#3b0616",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#534345",
+                    "tertiary-fixed": "#ffe088",
+                    "secondary": "#5f5e5a",
+                    "primary-fixed-dim": "#ffb2bf",
+                    "surface-container-high": "#eae7e7",
+                    "inverse-surface": "#303030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Playfair Display"],
+                    "headline-md": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Playfair Display"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(47, 47, 47, 0.1);
+            box-shadow: inset 2px 2px 0px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(63, 8, 25, 0.05), inset 2px 2px 0px rgba(255, 255, 255, 0.8);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chess-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(133, 114, 117, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .bordeaux-glow {
+            box-shadow: 0 0 40px rgba(63, 8, 25, 0.03);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden chess-pattern">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-outline/10 shadow-sm transition-all duration-200">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+<a class="font-display-lg text-headline-md text-primary tracking-tight" href="#">The64</a>
+<div class="hidden md:flex gap-8 items-center h-full">
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold border-b-2 border-primary pb-1 transition-colors" href="#">Learn</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Tutorials</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Best Players</a>
+<a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors" href="#">Puzzles</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-primary font-label-md uppercase tracking-wider hover:opacity-80 transition-all">Sign In</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md uppercase tracking-wider hover:bg-primary-container transition-all active:opacity-80">Join Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Hero Section -->
+<header class="mb-16 max-w-3xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-6">Master the Art of Strategy</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Step onto the board. From the basic dance of the pieces to the complex theories of grandmasters, start your journey here with academic precision and minimalist clarity.</p>
+</header>
+<!-- Fundamentals Grid -->
+<section class="mb-24">
+<div class="flex items-center gap-4 mb-8">
+<span class="w-12 h-px bg-outline-variant"></span>
+<h2 class="font-headline-md text-headline-md text-primary">The Fundamentals</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Lessons -->
+<div class="glass-card p-8 rounded-xl flex flex-col gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Chessboard Setup</h3>
+<p class="text-on-surface-variant flex-grow">Learn the correct orientation of the board and the precise location of every piece in the starting rank.</p>
+<button class="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Begin Lesson <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="glass-card p-8 rounded-xl flex flex-col gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Coordinates</h3>
+<p class="text-on-surface-variant flex-grow">The language of the board. Master files (a-h) and ranks (1-8) to read and record movements.</p>
+<button class="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Begin Lesson <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="glass-card p-8 rounded-xl flex flex-col gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">sports_kabaddi</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Capturing</h3>
+<p class="text-on-surface-variant flex-grow">Understanding how to remove an opponent's piece from the board and the strategic value of exchanges.</p>
+<button class="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all">
+                        Begin Lesson <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Pieces Interactive Section -->
+<section class="mb-24">
+<div class="flex items-center gap-4 mb-8">
+<span class="w-12 h-px bg-outline-variant"></span>
+<h2 class="font-headline-md text-headline-md text-primary">Anatomy of the Army</h2>
+</div>
+<!-- Piece Navigation -->
+<div class="grid grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- King -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden bg-surface-container-high/50">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist 3D rendering of a white chess King piece standing on a polished ivory surface with soft dramatic lighting. The background is a blurred academic library setting with deep bordeaux velvet accents. The style is clean, modern, and prestigious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXZ2ldQXXaCfW2Ulb6tmUGWBRUKOvqQC7sH0iKps6ZD7afDiHTZqVAxYjWI9N09kPUkLWVxj70LL_jvwmXcF8YWxza2lPxKrMK4PwnMrAnY6haiqXybK2tKv1F3brGbxkI0mldmAxsX23V_2W_dSlIy4RJTYVMbv0gfLRBeABfribjZI1vxjV2MVmgorfJWTVIbkgPlaoy8PQkm7cVn3iNKJDgEUK8ohsE9iiBCoqPSJN7rXM1zYuS8KHFKTHqnxcGFF0FRv61jjI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Infinite Value</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-display-lg text-headline-lg text-primary">King</h3>
+<span class="material-symbols-outlined text-4xl text-primary/20">chess_king</span>
+</div>
+<p class="text-on-surface-variant mb-6">The most important piece. Moves one square in any direction. Protect him at all costs.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Cannot be captured, only checkmated.</span>
+</div>
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Crucial in the endgame for opposition.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Queen -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden bg-surface-container-high/50">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A macro shot of a white chess Queen piece showing intricate wood grain and ivory finish. Soft light emphasizes its crown. The background is a soft focus study with high-end furniture and a palette of charcoal, cream, and deep red. Visual style is elegant and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOrXzULCmmnLKi6qPN1Shf4aZWUR4TyuDkXJAOPjNK93_tRFOBPKTK2mZKB51avpwqZWpiiZknV2w48aK2BZ8XSR8aZ8fVHRaKf621jfyMEIavhpyKTyBEUrBoHSnJtYE7Euk_SmLo7hoExc-gFADKNYjDaa-dngxEsuW923IARUqRqHEiKuPFaDn1YaYdFhSI675nU0mrZNiTBqWbN0YhmRHNHVVC4WoaPzWi3i-EOHTFkZ0EpcrvBwBO4g8pFoXQbzZzD4RCcHE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Value: 9 Points</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-display-lg text-headline-lg text-primary">Queen</h3>
+<span class="material-symbols-outlined text-4xl text-primary/20">chess_queen</span>
+</div>
+<p class="text-on-surface-variant mb-6">The ultimate warrior. Combines the powers of the Rook and Bishop. High mobility.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>The most versatile piece on the board.</span>
+</div>
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Best kept active in the center.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Knight -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden bg-surface-container-high/50">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A stylized 3D white chess Knight piece jumping over other pieces in a minimalist abstract visualization. The lighting is low-key with warm gold highlights on the edges. The color palette is Ivory Whisper and Charcoal with subtle Bordeaux wood textures. Artistic and conceptual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhj9JBPJxmoOmg7-7y0wARMggtAOhLojUEX6gO3iljWfv6uNGNr6VvLoNmKT1nJIJsE_tmU88kScYppCm_Gm8sGRg18U56YUl5UbaBFqwRnIR2YMr9k0DaeXD1ya9ZdMzVe8osnplKWlS_wd37ybqz0CnHZPMQUZfvx0B2GTEamoR07ixvtDNQrD1nkK-iPh2vAQGe9orxJ7cy66H2trFWaM8It2oV6EVV4byOSn10CRbuKR_p9pSt0BPhBGciSQS0t6LGs31Arzk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Value: 3 Points</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-display-lg text-headline-lg text-primary">Knight</h3>
+<span class="material-symbols-outlined text-4xl text-primary/20">chess_knight</span>
+</div>
+<p class="text-on-surface-variant mb-6">Moves in an 'L' shape and can jump over other pieces. Unpredictable and dangerous.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Excels in closed positions with many pawns.</span>
+</div>
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Deadly at delivering forks.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Rook -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden bg-surface-container-high/50">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A detailed view of a white Rook chess piece against a dark, moody background with atmospheric dust motes. The piece has a subtle glow from a single source light. Premium academic aesthetics, focus on texture and form. Palette includes deep red and ivory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJfCCnbuoR2iY6UIwm68H0wcJh2WjUv6zntsl9q2Fy9HwXVAonPgJUSqAI309auDMp8EvpF_1KOG23eqDttMtcFdwGxOF6g-Deb6s68qfz6olXqwO4vvw8Rt4xc5cbgyyfmiIh5tyPJSlYZm0jZqhiRR3kcdpMfVimI0Nba4o_p0lDwzsGTt1PK9rwf7q6YtuB3n5i7CIDo_aBpyabV8f2islz0ISkXResLXNzZTY2HYR1uQ5E2vE-Qz_S7IG4BbTMr1V8GtF1InA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Value: 5 Points</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-display-lg text-headline-lg text-primary">Rook</h3>
+<span class="material-symbols-outlined text-4xl text-primary/20">chess_rook</span>
+</div>
+<p class="text-on-surface-variant mb-6">Moves in straight lines horizontally or vertically. Powerful in the endgame.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Strongest on open files without pawns.</span>
+</div>
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Cooperate best in pairs on the 7th rank.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bishop -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden bg-surface-container-high/50">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist close-up of a white Bishop chess piece. The lighting is soft and high-key, emphasizing the diagonal slit in the mitre. The style is glassmorphism-inspired with a clean ivory background and subtle gold leaf accents on the edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQiHlt21m3SAVyA8GNVofRN2EbHfc1PKpWEZSWOUzz4hw3XAOmOp9_jurrbi2wwD39akC7uDk8QjFPU7rh29Iux2sLArqi081KMTk0QumClcfcUNZThq5BL2NcisT8QOECXYfayM1SLl4b6h3O1yqv-n6fE0LaWz-mA0UVeN2T_hB7nfLV-POhu4bvtsehNXcyneHH2o7sHvUZ6k2U7HCMFhzerz8c5qVRYSQxYUiihYzMYtetnEg7Yytot_EEWGHvxWovWkrJiDI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Value: 3 Points</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-display-lg text-headline-lg text-primary">Bishop</h3>
+<span class="material-symbols-outlined text-4xl text-primary/20">chess_bishop</span>
+</div>
+<p class="text-on-surface-variant mb-6">Moves diagonally any number of squares. Limited to squares of its own color.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Powerful long-range snipers in open games.</span>
+</div>
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>The 'Bishop Pair' is a significant advantage.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pawn -->
+<div class="glass-card rounded-xl overflow-hidden group">
+<div class="h-48 relative overflow-hidden bg-surface-container-high/50">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-500" data-alt="A row of white chess pawns marching forward on an elegant chess board. The lighting creates long shadows. The focus is sharp on the leading pawn with a shallow depth of field. The palette is dominated by warm whites and deep burgundy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6DbVzrGU5WovsTPcYLV-YKQ0I2DcntRO0Zq67jsw5PPS6fZvA-ZV_GYcatqeaTDxwJVBb86DBEggt5iw8WQ6qyzNGsuahZH7ZcCI4TNq6MFYP1p5LRJB7Cqi6vIcm2NEwGC04s8gvGOWTrbU5XrV1v64TdhJU1kfqc2TgUS7KojHq0VWQjpP8tcbN32D_JpWp8--Wax_c-0wvlt2_3YnKdThy6utAo6RS1Ce3G-OkAtLzXiMIfJdAv9ZSvrBjJ1eeUbBW1szp0mA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<span class="text-xs font-bold uppercase tracking-widest text-primary/60">Value: 1 Point</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-display-lg text-headline-lg text-primary">Pawn</h3>
+<span class="material-symbols-outlined text-4xl text-primary/20">chess_pawn</span>
+</div>
+<p class="text-on-surface-variant mb-6">The soul of chess. Moves forward but captures diagonally. Small but significant.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Can move two squares on its first move.</span>
+</div>
+<div class="flex items-center gap-3 text-label-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span>Promote into any piece upon reaching the end.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Advanced Rules Grid -->
+<section class="mb-12">
+<div class="flex items-center gap-4 mb-8">
+<span class="w-12 h-px bg-outline-variant"></span>
+<h2 class="font-headline-md text-headline-md text-primary">Special Rules &amp; Logic</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="p-6 border border-outline/10 rounded-xl hover:border-primary/20 transition-all cursor-pointer group">
+<h4 class="font-headline-md text-body-lg text-primary mb-2 group-hover:translate-x-1 transition-transform">Castling</h4>
+<p class="text-label-md text-on-surface-variant">The only move involving two pieces at once to secure the King.</p>
+</div>
+<div class="p-6 border border-outline/10 rounded-xl hover:border-primary/20 transition-all cursor-pointer group">
+<h4 class="font-headline-md text-body-lg text-primary mb-2 group-hover:translate-x-1 transition-transform">En Passant</h4>
+<p class="text-label-md text-on-surface-variant">The 'in passing' capture rule that every beginner must learn.</p>
+</div>
+<div class="p-6 border border-outline/10 rounded-xl hover:border-primary/20 transition-all cursor-pointer group">
+<h4 class="font-headline-md text-body-lg text-primary mb-2 group-hover:translate-x-1 transition-transform">Checkmate</h4>
+<p class="text-label-md text-on-surface-variant">The ultimate goal. Trapping the King with no escape possible.</p>
+</div>
+<div class="p-6 border border-outline/10 rounded-xl hover:border-primary/20 transition-all cursor-pointer group">
+<h4 class="font-headline-md text-body-lg text-primary mb-2 group-hover:translate-x-1 transition-transform">Stalemate</h4>
+<p class="text-label-md text-on-surface-variant">A draw where no legal move exists but the King is not in check.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container-low border-t border-outline/10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<a class="font-display-lg text-headline-md text-primary block mb-4" href="#">The64</a>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Mastering the Art of Strategy. A premium learning ecosystem for the modern player.</p>
+</div>
+<div>
+<h5 class="text-primary font-bold mb-4 uppercase tracking-widest text-xs">Company</h5>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">About Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Careers</a></li>
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Legal</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-primary font-bold mb-4 uppercase tracking-widest text-xs">Community</h5>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Support</a></li>
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Social</a></li>
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Community</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-primary font-bold mb-4 uppercase tracking-widest text-xs">Policy</h5>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary hover:underline underline-offset-4 transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-outline/5 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+<p class="text-on-surface-variant text-sm">© 2024 The64. All rights reserved. Mastering the Art of Strategy.</p>
+</div>
+</footer>
+<script>
+        // Subtle scroll behavior for navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md', 'bg-surface/90');
+                nav.classList.remove('bg-surface/60');
+            } else {
+                nav.classList.remove('shadow-md', 'bg-surface/90');
+                nav.classList.add('bg-surface/60');
+            }
+        });
+
+        // Interactive card hover sounds or micro-vibrations could be added here
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Micro-interaction logic
+            });
+        });
+    </script>
+</body></html>
